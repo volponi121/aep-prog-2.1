@@ -12,7 +12,7 @@ public class Física extends Pessoa {
 		this.cpf = cpf;
 	}
 
-	Física(UUID id, String cpf, String nome,String rg) {
+	Física(UUID id, String cpf, String nome, String rg) {
 		super(id, nome);
 		this.rg = rg;
 		this.cpf = cpf;
