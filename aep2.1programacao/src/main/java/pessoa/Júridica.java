@@ -25,10 +25,6 @@ public class Júridica extends Pessoa {
 		return cnpj;
 	}
 
-	public Set<CotaSociedade> getCotasSociedade() {
-		return cotasSociedade;
-	}
-
 	public double getCapitalSocial() {
 		return capitalSocial;
 	}
