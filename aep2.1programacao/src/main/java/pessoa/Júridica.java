@@ -7,18 +7,24 @@ import java.util.UUID;
 public class Júridica extends Pessoa {
 	private String cnpj;
 	private double capitalSocial;
-	private Set<CotaSociedade> cotasSociedade = new HashSet<CotaSociedade>();
+	private HashSet<CotaSociedade> cotasSociedade;
+
+	public Set<CotaSociedade> getCotasSociedade() {
+		return cotasSociedade;
+	}
 
 	Júridica(String nome, String cnpj, double capitalSocial) {
 		super(nome);
 		this.cnpj = cnpj;
 		this.capitalSocial = capitalSocial;
+		cotasSociedade = new HashSet<>();
 	}
 
 	Júridica(UUID id, String nome, String cnpj, double capitalSocial) {
 		super(id, nome);
 		this.cnpj = cnpj;
 		this.capitalSocial = capitalSocial;
+		cotasSociedade = new HashSet<>();
 	}
 
 	public String getCnpj() {
@@ -29,26 +35,24 @@ public class Júridica extends Pessoa {
 		return capitalSocial;
 	}
 
-	public void adicionarSócio(Júridica sócio, double percentualDeParticipação) {
-		CotaSociedade cotaSociedade = new CotaSociedade(sócio, percentualDeParticipação);
-		cotasSociedade.add(cotaSociedade);
+	public void adicionarSócio(Pessoa sócio, double percentualParticipacão) {
+		CotaSociedade cota = new CotaSociedade();
+		cota.sócio = sócio;
+		cota.percentualDeParticipação = percentualParticipacão;
+		cotasSociedade.add(cota);
 	}
 
-	public void removerSócio(Júridica sócio) {
-		for (CotaSociedade cotas : cotasSociedade) {
-			if (cotas.sócio == sócio) {
-				cotasSociedade.remove(cotas);
-			}
-		}
+	public void removerSócio(Pessoa sócio) {
+		cotasSociedade.remove(sócio);
 	}
 
 	private class CotaSociedade {
-		private Júridica sócio;
+		private Pessoa sócio;
 		private double percentualDeParticipação;
 
-		CotaSociedade(Júridica sócio, double percentualDeParticipação) {
-			this.sócio = sócio;
-			this.percentualDeParticipação = percentualDeParticipação;
+		@Override
+		public String toString() {
+			return sócio + " + " + percentualDeParticipação;
 		}
 	}
 }
