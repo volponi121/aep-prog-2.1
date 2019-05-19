@@ -17,7 +17,7 @@ public class Física extends Pessoa {
 	Física(UUID id, String cpf, String nome, String rg) {
 		super(id, nome);
 		this.rg = rg;
-		if (cpf != null && !cpf.isEmpty()) {
+		if ((cpf != null && !cpf.isEmpty())) {
 			this.cpf = cpf;
 		}
 	}

@@ -37,13 +37,6 @@ public class Júridica extends Pessoa {
 		return capitalSocial;
 	}
 
-	public void listarSocios() {
-		for (CotaSociedade auxiliar : cotasSociedade) {
-			System.out.println("Nome: " + auxiliar.sócio.getNome());
-			System.out.println("Percentual: " + auxiliar.percentualDeParticipação);
-		}
-	}
-
 	public void adicionarSócio(Pessoa sócio, double percentualParticipacão) {
 		CotaSociedade cota = new CotaSociedade();
 		for (CotaSociedade cotas : cotasSociedade) {
@@ -51,7 +44,8 @@ public class Júridica extends Pessoa {
 				cota.sócio = sócio;
 				cota.percentualDeParticipação = percentualParticipacão;
 				cotasSociedade.add(cota);
-				System.out.println(cotasSociedade);
+			} else {
+				throw new RuntimeException("Proibido ser sócio de sí mesmo");
 			}
 		}
 	}
@@ -70,7 +64,15 @@ public class Júridica extends Pessoa {
 
 		@Override
 		public boolean equals(Object obj) {
-			return ((Pessoa) obj).getNome() == this.sócio.getNome();
+			return ((Pessoa) obj).getNome().equals(this.sócio.getNome());
 		}
 	}
+
+	public void listarSocios() {
+		for (CotaSociedade auxiliar : cotasSociedade) {
+			System.out.println("Nome: " + auxiliar.sócio.getNome());
+			System.out.println("Percentual: " + auxiliar.percentualDeParticipação);
+		}
+	}
+
 }

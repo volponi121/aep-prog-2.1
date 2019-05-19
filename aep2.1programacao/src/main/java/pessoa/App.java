@@ -5,9 +5,13 @@ public class App {
 		Júridica j1 = new Júridica("Fabio", "123", 12.01);
 		Júridica j2 = new Júridica("Hise", "123", 13.1);
 		
-		j1.adicionarSócio(j1, 10.0);
+
+		j1.adicionarSócio(j1,10.0);
+		j1.adicionarSócio(j1,11.0);
+		
+		j1.listarSocios();
 	
-		System.out.println(j1.getCotasSociedade());
 	}
 }
+
 
