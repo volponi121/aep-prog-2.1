@@ -9,13 +9,17 @@ public class Física extends Pessoa {
 	Física(String nome, String rg, String cpf) {
 		super(nome);
 		this.rg = rg;
-		this.cpf = cpf;
+		if (cpf != null && !cpf.isEmpty()) {
+			this.cpf = cpf;
+		}
 	}
 
 	Física(UUID id, String cpf, String nome, String rg) {
 		super(id, nome);
 		this.rg = rg;
-		this.cpf = cpf;
+		if (cpf != null && !cpf.isEmpty()) {
+			this.cpf = cpf;
+		}
 	}
 
 	public String getCpf() {

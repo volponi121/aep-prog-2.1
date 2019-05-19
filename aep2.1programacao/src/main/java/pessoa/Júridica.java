@@ -15,7 +15,9 @@ public class Júridica extends Pessoa {
 
 	Júridica(String nome, String cnpj, double capitalSocial) {
 		super(nome);
-		this.cnpj = cnpj;
+		if (cnpj != null && !cnpj.isEmpty()) {
+			this.cnpj = cnpj;
+		}
 		this.capitalSocial = capitalSocial;
 		cotasSociedade = new HashSet<>();
 	}
@@ -35,15 +37,31 @@ public class Júridica extends Pessoa {
 		return capitalSocial;
 	}
 
+	public void listarSocios() {
+		for (CotaSociedade auxiliar : cotasSociedade) {
+			System.out.println("Nome: " + auxiliar.sócio.getNome());
+			System.out.println("Percentual: " + auxiliar.percentualDeParticipação);
+		}
+	}
+
 	public void adicionarSócio(Pessoa sócio, double percentualParticipacão) {
 		CotaSociedade cota = new CotaSociedade();
-		cota.sócio = sócio;
-		cota.percentualDeParticipação = percentualParticipacão;
-		cotasSociedade.add(cota);
+		for (CotaSociedade cotas : cotasSociedade) {
+			if (!cotas.equals(sócio) && (percentualParticipacão > 0 && percentualParticipacão <= 100)) {
+				cota.sócio = sócio;
+				cota.percentualDeParticipação = percentualParticipacão;
+				cotasSociedade.add(cota);
+				System.out.println(cotasSociedade);
+			}
+		}
 	}
 
 	public void removerSócio(Pessoa sócio) {
-		cotasSociedade.remove(sócio);
+		for (CotaSociedade cotas : cotasSociedade) {
+			if (cotas.sócio == sócio) {
+				cotasSociedade.remove(cotas);
+			}
+		}
 	}
 
 	private class CotaSociedade {
@@ -51,8 +69,8 @@ public class Júridica extends Pessoa {
 		private double percentualDeParticipação;
 
 		@Override
-		public String toString() {
-			return sócio + " + " + percentualDeParticipação;
+		public boolean equals(Object obj) {
+			return ((Pessoa) obj).getNome() == this.sócio.getNome();
 		}
 	}
 }
