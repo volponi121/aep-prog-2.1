@@ -40,7 +40,7 @@ public class Júridica extends Pessoa {
 	public void adicionarSócio(Pessoa sócio, double percentualParticipacão) {
 		CotaSociedade cota = new CotaSociedade();
 		for (CotaSociedade cotas : cotasSociedade) {
-			if (!cotas.equals(sócio) && (percentualParticipacão > 0 && percentualParticipacão <= 100)) {
+			if (cotas.equals(sócio) && percentualParticipacão > 0 && percentualParticipacão <= 100) {
 				cota.sócio = sócio;
 				cota.percentualDeParticipação = percentualParticipacão;
 				cotasSociedade.add(cota);
@@ -64,7 +64,10 @@ public class Júridica extends Pessoa {
 
 		@Override
 		public boolean equals(Object obj) {
-			return ((Pessoa) obj).getNome().equals(this.sócio.getNome());
+			if(((Pessoa) obj).getNome().equals(this.sócio.getNome())) {
+				return false;
+			}
+			return true;
 		}
 	}
 

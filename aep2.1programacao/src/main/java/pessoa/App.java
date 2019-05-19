@@ -7,7 +7,7 @@ public class App {
 		
 
 		j1.adicionarSócio(j1,10.0);
-		j1.adicionarSócio(j1,11.0);
+		j1.adicionarSócio(j2,11.0);
 		
 		j1.listarSocios();
 	
